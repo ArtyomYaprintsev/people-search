@@ -1,6 +1,4 @@
-// https://swapi.dev/api/people/
-
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const peopleApi = createApi({
   reducerPath: "peopleApi",
@@ -8,11 +6,11 @@ const peopleApi = createApi({
     baseUrl: "https://swapi.dev/api/",
   }),
   endpoints: (builder) => ({
-    searchPeople: builder.query(() => ({
-      query: (name) => ({
-        url: `/people/?search=${name ?? ""}`,
+    searchPeople: builder.query({
+      query: (searchParams) => ({
+        url: `/people/?${searchParams ?? ""}`,
       }),
-    })),
+    }),
   }),
 });
 
